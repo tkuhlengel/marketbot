@@ -1,0 +1,43 @@
+Create A market polling bot for TEST.  One that doesn't live solely on google docs.
+
+Plan:
+
+skyvr: Connect to the google APIs, pull from the sheet, and get the following items:
+  1. List of items to be monitored, (Pull this every time.) including
+      a. Item Name
+      b. Item ID
+      c. Market Volume Threshold.
+      d. Last known market volume
+      e. System with market to monitor
+  2. SQLite database? List of items recently broadcast with volume at the time. Arch can do this if you don't want to.
+
+arch: Pull the list of data from CREST
+  1. Set up a polling scheme every X amount of time.
+  2. Maintain the CREST login token in a mostly idle sleeper loop. 
+  3. Calculate Current market volume from sell orders.
+  4. Pull Weekly Market Volumes in target system.
+  5. Output a list/table with 
+    a. Name
+    b. Market Volume Presently
+    c. Weekly Market Volume
+    d. b/c*100 (percentage).
+    
+    
+  
+Expected Dependencies:
+pycrest - CREST library for python
+GData - Google docs api for python
+numpy - For the array math.
+
+CREST data can be cached to disk or to memory, depending on the needs of the server.
+A configuration file will need to be available to set the following values:
+  a. Client ID (CREST)
+  b. EVE API key (CREST)
+  
+Conventions:
+  Comments on every function describing purpose and return and a summary of inputs.  
+  Triple single/double Quote for this.
+  One .py module per major function.
+  Aim for Python 3.  Well, At least I'd like to, and I know it may not be possible.
+  List any additional dependencies in this file.
+  
